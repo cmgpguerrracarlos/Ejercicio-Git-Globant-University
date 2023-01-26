@@ -1,0 +1,14 @@
+<!-- sldsValidatorIgnore -->
+
+<template>
+    <lightning-card title="Open cases" icon-name="standard:event" class="slds-align_absolute-center">
+        <!-- sldsValidatorIgnoreNextLine -->
+        <lightning-datatable 
+            data={cases.data} 
+            columns={columns} 
+            key-field="Id"
+            onsave={handleSave}
+            draft-values={draftValues}>
+        </lightning-datatable>
+    </lightning-card>
+</template>

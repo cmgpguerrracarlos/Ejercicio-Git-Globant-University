@@ -1,0 +1,142 @@
+<aura:component controller="StarWarsForm2Controller" implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+	<aura:attribute name="nroPersonaje" type="Integer"/>
+    <aura:attribute name="buscado" type="Boolean" default="false"/>
+    <aura:attribute name="newPersonaje" type="StarWarsPersonaje__c"/>
+    <aura:attribute name="aviso" type="String"/>
+    <aura:attribute name="error" type="String"/>
+    <lightning:card variant="Narrow" title="Star Wars Personaje" iconName="standard:account" footer="c.guerra@globant.com">
+    	<div class="form">
+        	<form class="slds-form_stacked">
+        		<lightning:input type="number" name="id" 
+                                 placeholder="Ingrese id personaje"
+                                 label="Id personaje" value="{!v.nroPersonaje}" 
+                                 />
+    			<lightning:button variant="brand" label="Buscar" 
+                                  title="Brand action" onclick="{!c.search }" />
+    		</form>
+            <h2 class="red">{!v.error}</h2>
+    	</div>
+        
+        <aura:if isTrue="{!v.buscado}">
+        <div class="form">
+        	<form class="slds-form_stacked">
+                
+                <aura:if isTrue="{!or(v.newPersonaje.Id__c == 'none', v.newPersonaje.Id__c == 'n/a', v.newPersonaje.Id__c == 'unknown')}">
+    				<lightning:input type="number" aura:id="starwarsform"                        
+                                 name="id_personaje" label="Id"
+                                 value="{!v.newPersonaje.Id__c}" required="true"
+                                 disabled="false"/>
+    			<aura:set attribute="else">
+    				<lightning:input type="number" aura:id="starwarsform" 
+                                 name="id_personaje" label="Id"
+                                 value="{!v.newPersonaje.Id__c}" required="true"
+                                 disabled="true"/>
+    			</aura:set>
+                </aura:if>
+                
+                <aura:if isTrue="{!or(v.newPersonaje.Name == 'none', v.newPersonaje.Name == 'n/a', v.newPersonaje.Name == 'unknown')}">
+    				<lightning:input aura:id="starwarsform" name="nombre" 
+                                 label="Nombre" 
+                                 value="{!v.newPersonaje.Name}" required="true"
+                                 disabled="false"/>
+    			<aura:set attribute="else">
+    				<lightning:input aura:id="starwarsform" name="nombre" 
+                                 label="Nombre" 
+                                 value="{!v.newPersonaje.Name}" required="true"
+                                 disabled="true"/>
+    			</aura:set>
+                </aura:if>
+           
+                <aura:if isTrue="{!or(v.newPersonaje.height__c == 'none', v.newPersonaje.height__c == 'n/a', v.newPersonaje.height__c == 'unknown')}">
+                    <lightning:input type="number" aura:id="starwarsform" 
+                                 name="altura" label="Altura"
+                                 value="{!v.newPersonaje.height__c}" required="true"
+                                 disabled="false"/>
+    			<aura:set attribute="else">
+    				<lightning:input type="number" aura:id="starwarsform" 
+                                 name="altura" label="Altura"
+                                 value="{!v.newPersonaje.height__c}" required="true"
+                                 disabled="true"/>
+    			</aura:set>
+                </aura:if>
+        		<aura:if isTrue="{!or(v.newPersonaje.gender__c == 'none', v.newPersonaje.gender__c == 'n/a', v.newPersonaje.gender__c == 'unknown')}">
+    				<lightning:input aura:id="starwarsform" name="genero" 
+                                 label="Genero"
+                                 value="{!v.newPersonaje.gender__c}" required="true"
+                                 disabled="false"/>
+    			<aura:set attribute="else">
+    				<lightning:input aura:id="starwarsform" name="genero" 
+                                 label="Genero"
+                                 value="{!v.newPersonaje.gender__c}" required="true"
+                                 disabled="true"/>
+    			</aura:set>
+                </aura:if>
+        		
+                <aura:if isTrue="{!or(v.newPersonaje.hair_color__c == 'none', v.newPersonaje.hair_color__c == 'n/a', v.newPersonaje.hair_color__c == 'unknown')}">
+    				<lightning:input aura:id="starwarsform" name="color_cabello" 
+                                 label="Color de pelo"
+                                 value="{!v.newPersonaje.hair_color__c }" required="true"
+                                 disabled="false"/>
+    			<aura:set attribute="else">
+    				<lightning:input aura:id="starwarsform" name="color_cabello" 
+                                 label="Color de pelo"
+                                 value="{!v.newPersonaje.hair_color__c }" required="true"
+                                 disabled="true"/>
+    			</aura:set>
+                </aura:if>
+        	
+               
+               <aura:if isTrue="{!or(v.newPersonaje.eye_color__c == 'none', v.newPersonaje.eye_color__c == 'n/a', v.newPersonaje.eye_color__c == 'unknown')}">
+    				<lightning:input aura:id="starwarsform" name="color_ojos" 
+                                 label="Color de ojos"
+                                 value="{!v.newPersonaje.eye_color__c }" required="true"
+                                 disabled="false"/>
+    			<aura:set attribute="else">
+    				<lightning:input aura:id="starwarsform" name="color_ojos" 
+                                 label="Color de ojos"
+                                 value="{!v.newPersonaje.eye_color__c }" required="true"
+                                 disabled="true"/>
+    			</aura:set>
+                </aura:if>
+        		
+               <aura:if isTrue="{!or(v.newPersonaje.url__c == 'none', v.newPersonaje.url__c == 'n/a', v.newPersonaje.url__c == 'unknown')}">
+    				<lightning:input aura:id="starwarsform" name="url" 
+                                 label="URL"
+                                 value="{!v.newPersonaje.url__c}" required="true"
+                                 disabled="false"/>
+    			<aura:set attribute="else">
+    				<lightning:input aura:id="starwarsform" name="url" 
+                                 label="URL"
+                                 value="{!v.newPersonaje.url__c}" required="true"
+                                 disabled="true"/>
+    			</aura:set>
+                </aura:if>
+
+               
+               <aura:if isTrue="{!or(v.newPersonaje.planet__c == 'none', v.newPersonaje.planet__c == 'n/a', v.newPersonaje.planet__c == 'unknown')}">
+    				<lightning:input aura:id="starwarsform" name="planeta" 
+                                 label="Planeta"
+                                 value="{!v.newPersonaje.planet__c}" required="true"
+                                 disabled="false"/>
+    			<aura:set attribute="else">
+    				<lightning:input aura:id="starwarsform" name="planeta" 
+                                 label="Planeta"
+                                 value="{!v.newPersonaje.planet__c}" required="true"
+                                 disabled="true"/>
+    			</aura:set>
+                </aura:if>
+        		
+        		<lightning:button variant="brand" label="Guardar" 
+                                  title="guardar" onclick="{! c.save }" />
+    		
+        	</form>
+            <aura:if isTrue="{!v.aviso}">
+        		<h2 class="green">{!v.aviso}{!v.newPersonaje.Name}</h2>
+        	</aura:if>
+            <aura:if isTrue="{!v.error}">
+        		<h2 class="red">{!v.error}{!v.newPersonaje.Name}</h2>
+        	</aura:if>
+        </div>
+        </aura:if>
+    </lightning:card>
+</aura:component>

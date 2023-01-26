@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title="Cronometer" icon-name="standard:event" class="slds-align_absolute-center slds-var-p-around_x-large">
+
+        <div class="slds-var-p-around_large slds-align_absolute-center">
+            <lightning-formatted-text value={time}></lightning-formatted-text>
+        </div>
+
+        <c-button iname="play" title="utility:play" onpress={clockHandlerStart}></c-button>
+        <c-button iname="pause" title="utility:pause" onpress={clockHandlerPause}></c-button>
+        <c-button iname="stop" title="utility:stop" onpress={clockHandlerStop}></c-button>
+    </lightning-card>
+
+</template>
