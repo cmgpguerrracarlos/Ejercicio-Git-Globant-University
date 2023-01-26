@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>55.0</apiVersion>
-    <description>If a high-value opportunity is closed and won, create a draft contract</description>
+    <description>If a high-value opportunity is closed and won, create a draft contract. Etc.</description>
     <environments>Default</environments>
     <interviewLabel>Closed Won Opportunities {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Closed Won Opportunities</label>
